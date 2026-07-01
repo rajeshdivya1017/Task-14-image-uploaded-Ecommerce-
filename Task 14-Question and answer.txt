@@ -1,0 +1,53 @@
+1.What is multipart/form-data and why is it different from a normal JSON request when uploading files?
+
+	multipart/form-data is an HTTP content type used to send files along with form data. Unlike a normal JSON request, which can only send text-based data, multipart/form-data allows binary data such as images, PDFs, and other files to be uploaded. In this project, the frontend uses FormData to send the selected image to the Flask backend. Flask receives the uploaded file through request.files and saves it to the server.
+
+
+2.How do you generate a unique filename for every upload? What would happen if you didn't?
+
+	A unique filename is generated using Python's `uuid` module.
+		ext = file.filename.rsplit(".", 1)[1].lower()
+		filename = f"{uuid.uuid4().hex}.{ext}"
+
+	This creates a random filename for every uploaded image. Without generating unique filenames, two users uploading files with the same name (for example, `image.jpg`) would cause the newer file to overwrite the existing one, resulting in data loss.
+
+
+3.What validation did you add to block non-image files or oversized files?
+
+	The application validates uploaded files by allowing only specific image extensions.
+	ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "webp"}
+
+		def allowed_file(filename):
+    		return (
+        	"." in filename and
+        	filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+    		)
+
+	if not allowed_file(file.filename):
+   	 return jsonify({"error": "Only png, jpg, jpeg and webp allowed"}), 400
+
+
+	This prevents users from uploading unsupported file types such as `.exe` or `.pdf`.
+
+	Currently, the application does **not** implement a maximum file size validation. If required, Flask's `MAX_CONTENT_LENGTH` configuration can be added to reject oversized uploads.
+
+
+4.Where does Flask store the uploaded file, and what URL pattern does the frontend use to display it afterward?
+
+	Flask stores uploaded images inside the following folder:
+	backend/static/uploads/
+
+
+	After the image is saved, the backend returns the image path in the following format:
+	/static/uploads/<filename>
+
+
+	The React frontend displays the uploaded image using:
+	<img
+ 	 src={`http://localhost:5000${product.image_url}`}
+ 	 alt={product.name}
+	/>
+
+	This loads the image from the Flask server and displays it on the Home page and Product Detail page.
+
+

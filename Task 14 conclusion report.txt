@@ -1,0 +1,36 @@
+ Task 14 Report: 
+	Image Upload System (E-commerce Web Application)
+
+
+ Technologies Used:
+
+	==>Frontend:React.js, Vite, React Router, Context API
+	==>Backend: Flask (Python)
+	==>Database: MySQL
+	==>API Testing: Postman
+	==>Image Upload: Flask File Upload (Werkzeug)
+	==>Styling: CSS
+
+ Purpose of the Task:
+
+	The purpose of this task is to develop a full-stack E-commerce Web Application where customers can browse products, add them to a shopping cart, place orders, and view their order history. The application also provides an admin panel to manage products and customer orders. This project demonstrates the integration of frontend, backend, database, authentication, and image upload features in a real-world web application.
+
+ Features Implemented:
+
+	* User Registration and Login with secure password hashing.
+	* Session-based authentication using Flask.
+	* Role-based access for Admin and Customer.
+	* Product listing with category filtering and search functionality.
+	* Add, update, and delete products (Admin only).
+	* Product image upload and display.
+	* Shopping cart using React Context API.
+	* Add to cart and remove from cart functionality.
+	* Order placement with delivery address.
+	* Customer order history page.
+	* Admin order management.
+	* Update order status (Pending, Shipped, Delivered, etc.).
+	* Responsive and user-friendly interface.
+
+ Conclusion:
+
+	This task successfully demonstrates the development of a complete E-commerce Web Application using React, Flask, and MySQL. The project integrates user authentication, product management, shopping cart functionality, order processing, image upload, and role-based authorization. It provides practical experience in building a full-stack application by connecting the frontend with backend APIs and a relational database. The application follows a modular structure and serves as a strong foundation for developing larger online shopping platforms.
